@@ -4,8 +4,11 @@ package tacos;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,13 +16,15 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@Table
 public class TacoOrder implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
     private Long id;
 
-    private Date createdAt;
+    private Date placedAt = new Date();
 
     @NotBlank(message="Name is required")
     private String deliveryName;
@@ -31,6 +36,7 @@ public class TacoOrder implements Serializable  {
     private String deliveryCity;
 
     @NotBlank(message="State is required")
+    @Size(min = 2, max = 2, message="State must be 2 characters long")
     private String deliveryState;
 
     @NotBlank(message="Zip code is required")
