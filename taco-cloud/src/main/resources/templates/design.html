@@ -12,9 +12,9 @@
 
 <form method="POST" th:object="${taco}">
 
-            <span class="validationError"
-                  th:if="${#fields.hasErrors('ingredients')}"
-                  th:errors="*{ingredients}">Ingredient Error</span>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ingredients')}"
+          th:errors="*{ingredients}">Ingredient Error</span>
 
     <div class="grid">
         <div class="ingredient-group" id="wraps">
